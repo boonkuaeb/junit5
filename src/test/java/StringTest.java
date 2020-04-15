@@ -1,22 +1,48 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringTest {
 
     @Test
-    void whatEverYouWant()
+    void length_basic()
     {
-        int actualLength = "ABCD".length();
+        // Given
+        String str = "ABCD";
 
+        // When
+        int actualLength = str.length();
+
+        // Assertion
         int expectedLength = 4;
-
         assertEquals(expectedLength, actualLength);
+    }
 
+    @Test
+    void toUpperCase()
+    {
+        // Given
+        String str = "abcd";
 
-        // Write test code
-        // Invoke method square(4) => CUT
-        // Checks in place - 16 => Assertions
+        // When
+        String result = str.toUpperCase();
+
+        // Assertion && Verify
+        assertNotNull(result);
+        assertEquals("ABCD",result.toString());
+    }
+
+    @Test
+    void contain_basic()
+    {
+        // Given
+        String str = "abcdefghijk";
+
+        // When
+        boolean result = str.contains("ijk");
+
+        // Assertion
+        assertEquals(true,result);
+        // assertTrue(result);
     }
 }
