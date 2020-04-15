@@ -1,13 +1,23 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StringTest {
 
-    @BeforeEach // Befor in junit4
+    @BeforeAll
+    static void beforeAll()
+    {
+        System.out.println(">>> Initialize database connection");
+    }
+
+    @AfterAll
+    static void afterAll()
+    {
+        System.out.println(">>> Close database connection");
+
+    }
+
+    @BeforeEach // Before in junit4
     void beforeEach(TestInfo testInfo)
     {
         System.out.println("Initialize test data for "+testInfo.getDisplayName());
@@ -16,7 +26,7 @@ public class StringTest {
     @AfterEach // After in junit4
     void afterEach(TestInfo testInfo)
     {
-        System.out.println("Clean up test data for "+testInfo.getDisplayName());
+        System.out.println("Clean up test data for "+testInfo.getDisplayName()+"\n");
     }
 
     @Test
