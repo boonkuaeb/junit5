@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,19 +44,37 @@ public class StringTest {
     }
 
     @Test
-    void  length_greater_then_zero()
-    {
-        assertTrue("ABCD".length()>0);
-        assertTrue("ABC".length()>0);
-        assertTrue("A".length()>0);
-        assertTrue("DEF".length()>0);
+    void length_greater_then_zero() {
+        assertTrue("ABCD".length() > 0);
+        assertTrue("ABC".length() > 0);
+        assertTrue("A".length() > 0);
+        assertTrue("DEF".length() > 0);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"ABCD","ABC","A","DEF"})
-    void  length_greater_then_zero_using_parameterized(String str)
-    {
-        assertTrue(str.length()>0);
+    @ValueSource(strings = {"ABCD", "ABC", "A", "DEF"})
+    void length_greater_then_zero_using_parameterized(String str) {
+        assertTrue(str.length() > 0);
+    }
+
+    @Test
+    void uppercase() {
+        assertEquals("ABCD", "abcd".toUpperCase());
+        assertEquals("ABC", "abc".toUpperCase());
+        assertEquals("A", "a".toUpperCase());
+        assertEquals("DEF", "def".toUpperCase());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"abcd,ABCD","abc,ABC","'',''","a,A","def,DEF"})
+    void uppercaseCsv(String word, String expectedCapitalizeWord) {
+        assertEquals(expectedCapitalizeWord, word.toUpperCase());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"abcd,4","abc,3","'',0","a,1","def,3"})
+    void lengthCsv(String word, int expectedLength) {
+        assertEquals(expectedLength, word.length());
     }
 
 
