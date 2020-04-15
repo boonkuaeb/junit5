@@ -7,6 +7,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//@Disabled
 public class StringTest {
 
     @BeforeAll
@@ -33,6 +34,7 @@ public class StringTest {
     }
 
     @Test
+    @Disabled
     void length_basic() {
         // Given
         String str = "ABCD";
