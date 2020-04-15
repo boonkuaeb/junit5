@@ -7,8 +7,9 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//@Disabled
 public class StringTest {
+
+    private String str;
 
     @BeforeAll
     static void beforeAll() {
@@ -153,6 +154,48 @@ public class StringTest {
                     }
                 }
         );
+    }
+
+    @Nested
+    @DisplayName("For an Empty String")
+    class EmptyStringTests
+    {
+        @BeforeEach
+        void setToEmpty(){
+            str = "";
+        }
+
+        @Test
+        @DisplayName("Length should be zero")
+        void length_is_zero()
+        {
+            assertEquals(0,str.length());
+        }
+
+        @Test
+        @DisplayName("Upper should be empty")
+        void to_upper_is_empty()
+        {
+            assertEquals("",str.toUpperCase());
+        }
+
+    }
+
+    @Nested
+    @DisplayName("For an Large String")
+    class LargeStringTests
+    {
+        @BeforeEach
+        void setToEmpty(){
+            str = "qwqasadwer";
+        }
+
+        @Test
+        @DisplayName("Length should not be zero")
+        void length_is_zero()
+        {
+            assertEquals(10,str.length());
+        }
     }
 
 }
