@@ -5,33 +5,30 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StringTest {
 
     @BeforeAll
-    static void beforeAll()
-    {
+    static void beforeAll() {
         System.out.println(">>> Initialize database connection");
     }
 
     @AfterAll
-    static void afterAll()
-    {
+    static void afterAll() {
         System.out.println(">>> Close database connection");
 
     }
 
-    @BeforeEach // Before in junit4
-    void beforeEach(TestInfo testInfo)
-    {
-        System.out.println("Initialize test data for "+testInfo.getDisplayName());
+    @BeforeEach
+        // Before in junit4
+    void beforeEach(TestInfo testInfo) {
+        System.out.println("Initialize test data for " + testInfo.getDisplayName());
     }
 
-    @AfterEach // After in junit4
-    void afterEach(TestInfo testInfo)
-    {
-        System.out.println("Clean up test data for "+testInfo.getDisplayName()+"\n");
+    @AfterEach
+        // After in junit4
+    void afterEach(TestInfo testInfo) {
+        System.out.println("Clean up test data for " + testInfo.getDisplayName() + "\n");
     }
 
     @Test
-    void length_basic()
-    {
+    void length_basic() {
         // Given
         String str = "ABCD";
 
@@ -44,8 +41,7 @@ public class StringTest {
     }
 
     @Test
-    void toUpperCase()
-    {
+    void toUpperCase() {
         // Given
         String str = "abcd";
 
@@ -54,12 +50,11 @@ public class StringTest {
 
         // Assertion && Verify
         assertNotNull(result);
-        assertEquals("ABCD",result.toString());
+        assertEquals("ABCD", result.toString());
     }
 
     @Test
-    void contain_basic()
-    {
+    void contain_basic() {
         // Given
         String str = "abcdefghijk";
 
@@ -67,18 +62,17 @@ public class StringTest {
         boolean result = str.contains("ijk");
 
         // Assertion
-        assertEquals(true,result);
+        assertEquals(true, result);
         // assertTrue(result);
     }
+
     @Test
-    void slim_contain_basic()
-    {
+    void slim_contain_basic() {
         assertFalse("abcdefghijk".contains("xyz"));
     }
 
     @Test
-    void split_basic()
-    {
+    void split_basic() {
         // Given
         String str = "abc def ghi";
 
@@ -86,8 +80,24 @@ public class StringTest {
         String actualResult[] = str.split(" ");
 
         // Assertion
-        assertArrayEquals(new String[] {"abc", "def", "ghi"}, actualResult);
+        assertArrayEquals(new String[]{"abc", "def", "ghi"}, actualResult);
 //        String expectResult[] = new String[] {"abc", "def", "ghi"};
 //        assertArrayEquals(expectResult, actualResult);
     }
+
+
+    @Test
+    void length_exception() {
+        // Given
+        String str = null;
+
+        // Assertion
+        assertThrows(NullPointerException.class,
+                () -> {
+                    // When
+                    str.length();
+                }
+        );
+    }
+
 }
