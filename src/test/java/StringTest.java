@@ -3,6 +3,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StringTest {
@@ -66,13 +68,13 @@ public class StringTest {
     }
 
     @ParameterizedTest(name = "{0} when upper case is {1}")
-    @CsvSource(value = {"abcd,ABCD","abc,ABC","'',''","a,A","def,DEF"})
+    @CsvSource(value = {"abcd,ABCD", "abc,ABC", "'',''", "a,A", "def,DEF"})
     void uppercaseCsv(String word, String expectedCapitalizeWord) {
         assertEquals(expectedCapitalizeWord, word.toUpperCase());
     }
 
     @ParameterizedTest(name = "{0} is length {1}")
-    @CsvSource(value = {"abcd,4","abc,3","'',0","a,1","def,3"})
+    @CsvSource(value = {"abcd,4", "abc,3", "'',0", "a,1", "def,3"})
     void lengthCsv(String word, int expectedLength) {
         assertEquals(expectedLength, word.length());
     }
@@ -135,6 +137,18 @@ public class StringTest {
                 () -> {
                     // When
                     str.length();
+                }
+        );
+    }
+
+    @Test
+    void performanceTest() {
+        assertTimeout(Duration.ofSeconds(3),
+                () -> {
+                    for (int i=0; i < 100000;i++){
+                        int j =i;
+                        System.out.println("J :"+j);
+                    }
                 }
         );
     }
