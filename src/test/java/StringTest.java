@@ -65,13 +65,13 @@ public class StringTest {
         assertEquals("DEF", "def".toUpperCase());
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} when upper case is {1}")
     @CsvSource(value = {"abcd,ABCD","abc,ABC","'',''","a,A","def,DEF"})
     void uppercaseCsv(String word, String expectedCapitalizeWord) {
         assertEquals(expectedCapitalizeWord, word.toUpperCase());
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0} is length {1}")
     @CsvSource(value = {"abcd,4","abc,3","'',0","a,1","def,3"})
     void lengthCsv(String word, int expectedLength) {
         assertEquals(expectedLength, word.length());
