@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,12 +8,12 @@ public class StringTest {
 
     @BeforeAll
     static void beforeAll() {
-        System.out.println(">>> Initialize database connection");
+        System.out.println(">>> Initialize database connection \n");
     }
 
     @AfterAll
     static void afterAll() {
-        System.out.println(">>> Close database connection");
+        System.out.println(">>> Close database connection\n");
 
     }
 
@@ -39,6 +41,23 @@ public class StringTest {
         int expectedLength = 4;
         assertEquals(expectedLength, actualLength);
     }
+
+    @Test
+    void  length_greater_then_zero()
+    {
+        assertTrue("ABCD".length()>0);
+        assertTrue("ABC".length()>0);
+        assertTrue("A".length()>0);
+        assertTrue("DEF".length()>0);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"ABCD","ABC","A","DEF"})
+    void  length_greater_then_zero_using_parameterized(String str)
+    {
+        assertTrue(str.length()>0);
+    }
+
 
     @Test
     void toUpperCase() {
