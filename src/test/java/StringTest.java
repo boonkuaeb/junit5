@@ -91,7 +91,7 @@ public class StringTest {
         assertEquals("ABCD", result.toString());
     }
 
-    @Test
+    @RepeatedTest(10)
     void contain_basic() {
         // Given
         String str = "abcdefghijk";
