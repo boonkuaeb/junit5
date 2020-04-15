@@ -1,8 +1,23 @@
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StringTest {
+
+    @BeforeEach // Befor in junit4
+    void beforeEach(TestInfo testInfo)
+    {
+        System.out.println("Initialize test data for "+testInfo.getDisplayName());
+    }
+
+    @AfterEach // After in junit4
+    void afterEach(TestInfo testInfo)
+    {
+        System.out.println("Clean up test data for "+testInfo.getDisplayName());
+    }
 
     @Test
     void length_basic()
